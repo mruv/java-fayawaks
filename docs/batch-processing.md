@@ -68,4 +68,5 @@ An `ItemWriter` is an abstraction that represents the output of a Step, one batc
 
 #### An item processor.
 
+An `ItemProcessor` is an interface that represents the business processing of an item.
 
