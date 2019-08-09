@@ -46,4 +46,26 @@ In Spring, a `StepExecution` is a single attempt to execute a `Step`.
 
 An `ExecutionContext` is store of key/value state data (managed by the Spring framework) scoped to a `JobExecution` or `StepExecution` instance.
 
+#### A job repository.
+
+A `JobRepository` is a data persistence mechanism used by all Spring stereotypes described above.
+
+> It provides CRUD operations for `JobLauncher`, `Job`, and `Step` implementations. When a `Job` is first launched, a `JobExecution` is obtained from the repository, and, during the course of execution, `StepExecution` and `JobExecution` implementations are persisted by passing them to the repository.
+
+Use `@EnableBatchProcessing` to configure a `JobRepository` automatically.
+
+#### A job launcher.
+
+A `JobLauncher` is an interface for running jobs given a set of parameters.
+
+#### An item reader.
+
+An `ItemReader` is an interface that represents the retrieval of input for a `Step`.
+
+#### An item writer.
+
+An `ItemWriter` is an abstraction that represents the output of a Step, one batch or chunk of items at a time.
+
+#### An item processor.
+
 
