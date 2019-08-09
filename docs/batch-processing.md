@@ -2,5 +2,32 @@
 
 * To `batch` is the act of arranging things in groups.
 * A `batch` is a quantity coming or taken at one time.
-* `Batch processing` (in computing) is the scripted running of one of more tasks.
+* `Batch processing` (in computing) is the scripted running of one or more tasks.
 
+### Concepts
+
+#### A job.
+
+A `Job` is an entity that encapsulates an entire batch process.
+
+A job should:
+* Have a simple name.
+* Define steps and their order.
+* Define whether the job can be restarted.
+
+#### A job instance.
+
+In spring, a `JobInstance` refers to the concept of a logical job run. The implementation of a job instance has no understanding of the data to be loaded. `ItemReader`s provide the logic for loading data.
+
+#### Job parameters.
+
+A `JobParameters` object holds a set of parameters used to start a batch job. Job parameters help in distinguishing a job instance from another.
+
+> Not all job parameters are required to contribute to the identification of a JobInstance. By default, they do so. 
+> However, the framework also allows the submission of a Job with parameters that do not contribute to the identity of a JobInstance.
+
+#### Job execution.
+
+A `JobExecution` is a single attempt to run a job. Job executions can fail/succeed. The `JobInstance` corresponding to a certain job execution is only considered successful if the job execution ends successfully.
+
+> A Job defines what a job is and how it is to be executed, and a JobInstance is a purely organizational object to group executions together, primarily to enable correct restart semantics. A JobExecution, however, is the primary storage mechanism for what actually happened during a run and contains many more properties that must be controlled and persisted.
