@@ -26,8 +26,24 @@ A `JobParameters` object holds a set of parameters used to start a batch job. Jo
 > Not all job parameters are required to contribute to the identification of a JobInstance. By default, they do so. 
 > However, the framework also allows the submission of a Job with parameters that do not contribute to the identity of a JobInstance.
 
-#### Job execution.
+#### A job execution.
 
 A `JobExecution` is a single attempt to run a job. Job executions can fail/succeed. The `JobInstance` corresponding to a certain job execution is only considered successful if the job execution ends successfully.
 
 > A Job defines what a job is and how it is to be executed, and a JobInstance is a purely organizational object to group executions together, primarily to enable correct restart semantics. A JobExecution, however, is the primary storage mechanism for what actually happened during a run and contains many more properties that must be controlled and persisted.
+
+#### A step.
+
+A `Step` is a Spring domain object that describes a single, sequantial phase of a batch `Job`. Hence, each job is made up of one or more steps. 
+
+#### A step execution.
+
+In Spring, a `StepExecution` is a single attempt to execute a `Step`.
+
+>  A new `StepExecution` is created each time a `Step` is run, similar to `JobExecution`. However, if a step fails to execute because the step before it fails, no execution is persisted for it. A `StepExecution` is created only when its Step is actually started.
+
+#### An execution context.
+
+An `ExecutionContext` is store of key/value state data (managed by the Spring framework) scoped to a `JobExecution` or `StepExecution` instance.
+
+
